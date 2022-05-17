@@ -17,8 +17,8 @@ database = db.db("Chatdb1")
 
 
 
-@bot.inline_handler(lambda query: query.query == 'text')
-def query_text(inline_query):
+@bot.inline_handler(lambda query: len(query.query) == 0)
+def default_query(inline_query):
     try:
         seconds = time.time()
         if seconds%(3600*4) == 0:
