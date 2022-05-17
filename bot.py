@@ -50,7 +50,7 @@ def default_query(call):
         print("Done")
     except Exception as e:
         print(e)
-        return
+    return
 
 def cockSize(message):
     try:
