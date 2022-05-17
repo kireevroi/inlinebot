@@ -17,7 +17,7 @@ database = db.db("Chatdb1")
 
 
 
-@bot.inline_handler(lambda query: query.query == 'text')
+@bot.inline_handler()
 def default_query(call):
     try:
         seconds = time.time()
@@ -47,10 +47,8 @@ def default_query(call):
 #                                "/e1a/46e/df11faaaf2f297b5f608e9968bd9b8f124"
 #                                "-30-heman.rsquare.w330.jpg")
         bot.answer_inline_query(call.id, [cock, gay])
-        print("Done")
     except Exception as e:
         print(e)
-    return
 
 def cockSize(message):
     try:
