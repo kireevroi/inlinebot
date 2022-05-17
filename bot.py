@@ -17,7 +17,7 @@ database = db.db("Chatdb1")
 
 
 
-@bot.inline_handler()
+@bot.inline_handler(func=lambda c: True)
 def default_query(call):
     try:
         seconds = time.time()
@@ -46,7 +46,7 @@ def default_query(call):
 #                                thumb_url = "https://pyxis.nymag.com/v1/imgs"
 #                                "/e1a/46e/df11faaaf2f297b5f608e9968bd9b8f124"
 #                                "-30-heman.rsquare.w330.jpg")
-        bot.answer_inline_query(call.id, [cock, gay])
+        bot.answer_inline_query(call.id, [cock, gay], is_personal = True, cache_time = 3600 * 4)
     except Exception as e:
         print(e)
 
