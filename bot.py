@@ -17,7 +17,7 @@ database = db.db("Chatdb1")
 
 
 
-@bot.inline_handler(func=lambda call: True)
+@bot.inline_handler(lambda query: query.query == 'text')
 def default_query(call):
     try:
         seconds = time.time()
@@ -76,4 +76,5 @@ def gaySize(message):
     except Exception as e:
         print(e)
     return result
-bot.polling()
+
+bot.infinity_polling()
