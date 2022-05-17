@@ -20,9 +20,6 @@ database = db.db("Chatdb1")
 @bot.inline_handler(func=lambda c: True)
 def default_query(call):
     try:
-        seconds = time.time()
-        if seconds%(3600*4) == 0:
-            database.dropTable("AnyChat")
         print(call.from_user.username)
         cock = types.InlineQueryResultArticle('1', 'Cock Size',
                                 types.InputTextMessageContent(cockSize(call), parse_mode = 'MarkdownV2'),
@@ -53,26 +50,25 @@ def default_query(call):
 def cockSize(message):
     try:
         name_seq = ['Членес', 'Пенис', 'Пиструн', 'Писюн']
-        emoji_seq = ['\U0001F605','\U0001F614','\U0001F624','\uE417','\U0001F928','\U0001F60D']
-        chat_id = "AnyChat"
-        user = str(message.from_user.username)
-        database.createTable(chat_id)
-        database.addLine(chat_id, user, str(random.randint(0, 40)), str(random.randint(0, 100)))
-        data = database.getLine(chat_id, user) # returns a tuple
-        result = random.choice(name_seq)+' у @'+user+' *'+str(data[0])+'см*\. '+ random.choice(emoji_seq)
+        emoji_seq = ['\U0001F605','\U0001F614']
+        user = strReplace(message.from_user.username)
+        result = random.choice(name_seq)+' у @'+user+' *'+str(random.randint(0, 40))+'см*\. '+ random.choice(emoji_seq)
     except Exception as e:
         print(e)
     return result
 def gaySize(message):
     try:
         chat_id = "AnyChat"
-        user = str(message.from_user.username)
-        database.createTable(chat_id)
-        database.addLine(chat_id, user, str(random.randint(0, 40)), str(random.randint(0, 100)))
-        data = database.getLine(chat_id, user) # returns a tuple
-        result = '@' + user + ' сегодня гей на *'+str(data[1])+'%*\! \U0001F3F3\uFE0F\u200D\U0001F308'
+        user = strReplace(message.from_user.username)
+        result = '@' + user + ' сегодня гей на *'+str(random.randint(0, 100))+'%*\! \U0001F3F3\uFE0F\u200D\U0001F308'
     except Exception as e:
         print(e)
     return result
+
+def strReplace(str):
+    replacement = ['_', '*', '[', ']', '(', ')', '~', '`', '>', '#', '+', '-', '=', '|', '{', '}', '.', '!']
+    for x in replacement:
+        str = str.replace(x, '\\'+ x)
+    return str
 
 bot.infinity_polling()
