@@ -5,7 +5,7 @@ import time
 from telebot import types
 
 #main variables
-TOKEN = "5362092341:AAFFa-3oLN3BFepyULCGKE6n5WluN7K6nwE"
+TOKEN = ""
 bot = telebot.TeleBot(TOKEN)
 chats = {}
 #initializing database
