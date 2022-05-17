@@ -20,7 +20,6 @@ database = db.db("Chatdb1")
 @bot.inline_handler(func=lambda c: True)
 def default_query(call):
     try:
-        print(call.from_user.username)
         cock = types.InlineQueryResultArticle('1', 'Cock Size',
                                 types.InputTextMessageContent(cockSize(call), parse_mode = 'MarkdownV2'),
                                 description = "Random cocksize generator",
@@ -50,7 +49,7 @@ def default_query(call):
 def cockSize(message):
     try:
         name_seq = ['Членес', 'Пенис', 'Пиструн', 'Писюн']
-        emoji_seq = ['\U0001F605','\U0001F614']
+        emoji_seq = ['\U0001F60A', '\U0001F60D', '\U0001F632', '\U0001F925']
         user = strReplace(message.from_user.username)
         result = random.choice(name_seq)+' у @'+user+' *'+str(random.randint(0, 40))+'см*\. '+ random.choice(emoji_seq)
     except Exception as e:
