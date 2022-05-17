@@ -17,20 +17,20 @@ database = db.db("Chatdb1")
 
 
 
-@bot.inline_handler(lambda query: len(query.query) == 0)
-def default_query(inline_query):
+@bot.inline_handler(func=lambda call: True)
+def default_query(call):
     try:
         seconds = time.time()
         if seconds%(3600*4) == 0:
             database.dropTable("AnyChat")
-        print(inline_query.from_user.username)
+        print(call.from_user.username)
         cock = types.InlineQueryResultArticle('1', 'Cock Size',
-                                types.InputTextMessageContent(cockSize(inline_query), parse_mode = 'MarkdownV2'),
+                                types.InputTextMessageContent(cockSize(call), parse_mode = 'MarkdownV2'),
                                 description = "Random cocksize generator",
                                 thumb_url = "https://dictionary.cambridge.org"
                                 "/ru/images/thumb/cocker_noun_002_07370.jpg?version=5.0.239:")
         gay = types.InlineQueryResultArticle('2', 'Gay Percentage',
-                                types.InputTextMessageContent(gaySize(inline_query), parse_mode = 'MarkdownV2'),
+                                types.InputTextMessageContent(gaySize(call), parse_mode = 'MarkdownV2'),
                                 description = "Random gay generator",
                                 thumb_url = "https://upload.wikimedia.org/wikip"
                                 "edia/commons/thumb/1/12/LGBT_flag_square.svg/"
@@ -46,7 +46,8 @@ def default_query(inline_query):
 #                                thumb_url = "https://pyxis.nymag.com/v1/imgs"
 #                                "/e1a/46e/df11faaaf2f297b5f608e9968bd9b8f124"
 #                                "-30-heman.rsquare.w330.jpg")
-        bot.answer_inline_query(inline_query.id, [cock, gay])
+        bot.answer_inline_query(call.id, [cock, gay])
+        print("Done")
     except Exception as e:
         print(e)
 
