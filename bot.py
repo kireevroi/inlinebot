@@ -8,7 +8,6 @@ from telebot import types
 TOKEN = "5362092341:AAFFa-3oLN3BFepyULCGKE6n5WluN7K6nwE"
 bot = telebot.TeleBot(TOKEN)
 chats = {}
-seconds = time.time()
 #initializing database
 database = db.db("Chatdb1")
 
@@ -21,6 +20,7 @@ database = db.db("Chatdb1")
 @bot.inline_handler(lambda query: len(query.query) == 0)
 def default_query(inline_query):
     try:
+        seconds = time.time()
         if seconds%(3600*4) == 0:
             database.dropTable("AnyChat")
 
