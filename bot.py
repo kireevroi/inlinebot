@@ -1,7 +1,5 @@
 import telebot
 import random
-import db
-import time
 from telebot import types
 
 #main variables
