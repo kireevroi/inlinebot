@@ -23,7 +23,7 @@ def default_query(inline_query):
         seconds = time.time()
         if seconds%(3600*4) == 0:
             database.dropTable("AnyChat")
-
+        print(inline_query.from_user.username)
         cock = types.InlineQueryResultArticle('1', 'Cock Size',
                                 types.InputTextMessageContent(cockSize(inline_query), parse_mode = 'MarkdownV2'),
                                 description = "Random cocksize generator",
